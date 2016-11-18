@@ -1,0 +1,74 @@
+/*ui-dialog*/
+.ui-dialog{
+  width: 100%;
+  min-width: 320px;
+  max-width: 720px;
+  height: 100%;
+  margin: 0 auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(1,1,1,0.6);
+  display: block;
+  .ui-dialog-con{
+    width: 76%;
+    height: auto;
+    margin: auto;
+    padding: .4rem .3rem;
+    background: #fff;
+    position: absolute;
+    border: 1px solid;
+    border-radius: .06rem;
+    top: 30%;
+    left: 0;
+    right: 0;
+  }
+  .ui-dialog-tip{
+    color: #b7b7b7;
+    padding-bottom: .2rem;
+    display: block;
+    .ui-btn-con{
+      width: 100%;
+      height: .6rem;
+      line-height: .8rem;
+      margin-top: .2rem;
+      text-align: right;
+      border-top: 1px solid #e0e0e0;
+    }
+    .ui-btn-one{
+      margin-right: .2rem;
+    }
+    .ui-txt-tip{
+      font-size: .26rem;
+    }
+  }
+  .ui-dialog-title{
+    display: block;
+    header{
+      width: 100%;
+      text-align: center;
+      font-size: .3rem;
+      color: #FF4400;
+    }
+    .ui-txt-tip{
+      margin: .2rem 0;
+      color: #b7b7b7;
+      text-align: center;
+    }
+    .ui-btn-con{
+      width: 100%;
+      margin-top: .4rem;
+      text-align: center;
+      .ui-btn-one{
+        width: 2rem;
+        height: .7rem;
+        background: none;
+        border: 1px solid #b2b2b2;
+      }
+    }
+    .ui-icon-warn{
+      background-position: -2.43rem -.1rem;
+    }
+  }
+}
