@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = {
   //devtool: 'source-map',
   entry: {
-    main: './src/main.js'
+    main: './src/main'
     //vendors: ['react','jquery']
   },
   output: {
@@ -32,10 +32,13 @@ module.exports = {
     new ExtractTextPlugin("styles/styles.css")
     // new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js', Infinity) // 这是第三方库打包生成的文件
   ],
+  resolve: {
+      extensions: ['', '.js', '.jsx']
+  },
   module: {
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.js|jsx$/,
         loaders: ['babel'],
         include: path.join(__dirname,'/src')
       },

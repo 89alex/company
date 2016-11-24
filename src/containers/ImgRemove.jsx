@@ -30,7 +30,7 @@ class ImgRemove extends React.Component {
                         <p className="ui-tip-red ui-tip-warn"><i className="ui-up-icon ui-icon-warn"></i>部分图片失败</p>
                     </header>
                     <ul className="ui-link-list">
-                        <li><p className="ui-txt-p">www.baidu.com/1234567891011155565456</p><a className="ui-color-red" href="javascript:;">移除</a></li>
+                        <li><p className="ui-txt-p">www.baidu.com/1234567891011155565456</p><i className="ui-up-icon"></i><a className="ui-color-red" href="javascript:;">移除</a></li>
                         <li><p className="ui-txt-p">www.baidu.com/1234567891011155565456</p><a className="ui-color-red" href="javascript:;">移除</a></li>
                         <li><p className="ui-txt-p">www.baidu.com/1234567891011155565456</p><a className="ui-color-red" href="javascript:;">移除</a></li>
                     </ul>
