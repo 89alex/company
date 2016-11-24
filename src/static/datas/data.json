@@ -1,0 +1,25 @@
+{
+  "images": [
+    {"src": "./static/images/img1.jpg"},
+    {"src": "./static/images/img1.jpg"},
+    {"src": "./static/images/img1.jpg"},
+    {"src": "./static/images/img1.jpg"},
+    {"src": "./static/images/img1.jpg"},
+    {"src": "./static/images/img1.jpg"},
+    {"src": "./static/images/img1.jpg"}
+  ],
+  "attr": [
+    "长度：2000",
+    "价格1000",
+    "长度：2000",
+    "价格1000",
+    "长度：2000",
+    "价格1000",
+    "长度：2000",
+    "价格1000",
+    "长度：2000",
+    "价格1000",
+    "长度：2000",
+    "价格1000"
+  ]
+}
