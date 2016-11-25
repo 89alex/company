@@ -8,16 +8,16 @@ class ImgRemove extends React.Component {
                 {
                     title:'一起做网店（勿删）_商品详1',
                     links: [
-                        {link: 'www.baidu.com/1', state: 'not'},
+                        {link: 'www.baidu.com/1', state: 'fail'},
                         {link: 'www.baidu.com/2', state: 'not'},
                         {link: 'www.baidu.com/3', state: 'succ'},
-                        {link: 'www.baidu.com/4', state: 'not'}
+                        {link: 'www.baidu.com/4', state: 'fail'}
                     ]
                 },
                 {
                     title:'一起做网店（勿删）_商品详情2',
                     links: [
-                        {link: 'www.baidu.com/1', state: 'not'},
+                        {link: 'www.baidu.com/1', state: 'fail'},
                         {link: 'www.baidu.com/2', state: 'not'},
                         {link: 'www.baidu.com3', state: 'loading'},
                         {link: 'www.baidu.com4/', state: 'not'}
@@ -36,19 +36,41 @@ class ImgRemove extends React.Component {
          const _lists = lists
          const newLinks = _lists
          for(let i in newLinks){
-             newLinks[i].links.state = "loading"
+             for(let k in newLinks[i].links){
+                 newLinks[i].links[k].state = "loading"
+             }
+         }
+         this.setState({lists: newLinks})
+    }
+    handleRetry = () => {
+        const {catalog, lists} = this.state
+         const _lists = lists
+         const newLinks = _lists
+         for(let i in newLinks){
+             for(let k in newLinks[i].links){
+                 newLinks[i].links[k].state == 'fail' ? newLinks[i].links[k].state = "loading" : ''
+             }
+         }
+         this.setState({lists: newLinks})
+    }
+    handleRemove = () => {
+         const {catalog, lists} = this.state
+         const _lists = lists
+         const newLinks = _lists
+         for(let i in newLinks){
+             for(let k in newLinks[i].links){
+                 newLinks[i].links[k].state == 'fail' ? (newLinks[i].links.splice(k, 1)) : ''
+             }
          }
          this.setState({lists: newLinks})
     }
     handleClick = function(index, event){
-        const {catalog, list} = this.state
+        const {catalog, lists} = this.state
         const e = event.target, li = e.parentNode
-        //const links = this.state.lists[catalog].links
-        //const newLinks = links
         const links = lists
         const newLinks = links
         newLinks[catalog].links.splice(index, 1)
-        console.log(links)
+        //console.log(links)
         li.className = 'animated bounceOutLeft'
         setTimeout(() => {
             this.setState({lists: newLinks})
@@ -80,8 +102,8 @@ class ImgRemove extends React.Component {
                 <section className="ui-remove-con">
                     <header className="ui-txt-title">
                         <button className="ui-color-red" onClick={this.handleUpload}>一键搬家</button>
-                        <button className="ui-color-red">一键移除</button>
-                        <button className="ui-color-red">一键重试</button>
+                        <button className="ui-color-red" onClick={this.handleRemove}>一键移除</button>
+                        <button className="ui-color-red " onClick={this.handleRetry}>一键重试</button>
                         <p className="ui-tip-red ui-tip-warn"><i className="ui-up-icon ui-icon-warn"></i>部分图片失败</p>
                     </header>
                     <ul className="ui-link-list">
@@ -90,7 +112,7 @@ class ImgRemove extends React.Component {
                                 return (
                                     <li key={index}>
                                         <p className={`ui-txt-p ${links.state == 'succ' ? 'ui-color-blue' : 'ui-color-red'}`}>{links.link}</p>
-                                        <i className={`ui-up-icon ${links.state == 'loading' ? 'ui-icon-loading' : links.state == 'not' ? 'ui-icon-warn-im' : 'ui-icon-succ'}`}></i>
+                                        <i className={`ui-up-icon ${links.state == 'loading' ? 'ui-icon-loading' : links.state == 'not' || links.state == 'fail' ?'ui-icon-warn-im' : 'ui-icon-succ'}`}></i>
                                         <a className="ui-color-red ui-right" href="javascript:;" onClick={this.handleClick.bind(this, index)}>移除</a>
                                     </li>
                                 )

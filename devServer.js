@@ -10,7 +10,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 }));
-
+//app.use(function*(){console.log(56446)});
 app.use(require('webpack-hot-middleware')(compiler));
 
 //app.use('/public', express.static('public'));
