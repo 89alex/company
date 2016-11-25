@@ -12,6 +12,7 @@ module.exports = {
     path: path.join(__dirname, 'static/'),
     filename: 'scripts/bundle.js',
     publicPath: ''
+    //chunkFilename: "[name].min.js" 按需打包
   },
   babel: {
     presets: ['es2015', 'stage-0', 'react'],
@@ -44,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.(gif|jpg|png|woff|svg|eot|ttf)\??.*$/,
-        loader: 'url-loader?limit=50000&name=./i/[name].[ext]'
+        loader: 'url-loader?limit=50000&name=./i/[path][name].[ext]'
       },
       {
         test : /\.(scss|css)$/,

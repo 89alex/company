@@ -72,6 +72,10 @@ const title = {
         text: '上架时间',
         tip: '',
         order: 6
+    },
+    title9: {
+        text: '图片搬家',
+        tip: ''
     }
 }
 
@@ -211,10 +215,9 @@ class App extends React.Component {
                             </section>
                         </UploadTitle>
                         <p className="ui-tip-bot">您可以设定宝贝的正式开始销售的时间</p>
-                        <div className="ui-content-pad ui-img-remove">
-                            <header className="ui-txt-title"><i className="ui-block-red"></i> 图片搬家 </header>
+                        <UploadTitle title={title.title9}>
                             <ImgRemove />
-                        </div>
+                        </UploadTitle>
                         <div className="ui-content-pad">
                             <header className="ui-txt-title"><i className="ui-block-red"></i> 其他 </header>
                             <div className="ui-drop-menu-con">

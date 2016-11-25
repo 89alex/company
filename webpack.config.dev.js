@@ -51,7 +51,7 @@ module.exports = {
         test: /\.less$/, 
         loader: "style!css!less?sourceMap"
       },
-      { test: /\.(png|jpg)$/, loader: "file-loader" },
+      { test: /\.(png|jpg|gif)$/, loader: "file-loader" },
       { 
         test: /\.(woff|svg|eot|ttf)\??.*$/,
         loader: 'url-loader?limit=50000&name=[path][name].[ext]'

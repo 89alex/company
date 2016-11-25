@@ -21,6 +21,9 @@
 	.ui-color-red{
 		color: #FF4400;
 	}
+  .ui-color-blue{
+    color: #57b2e0;
+  }
 	.ui-header-container{
 		width: 100%;
 		height: 1.1rem;
@@ -101,6 +104,11 @@
           border: 1px solid #FF4400;
           font-size: .26rem;
         }
+      }
+      .ui-icon-warn-im{
+          background-position: -3.54rem 0;
+          background-size: 4rem;
+          vertical-align: middle;
       }
     }
 	.ui-se-times{
@@ -272,6 +280,14 @@
 	.ui-icon-warn{
 		background-position: -2.43rem -.1rem;
 	}
+  .ui-icon-warn-im{
+		background-position: -4.46rem -0.03rem;
+    background-size: 5rem;
+	}
+  .ui-icon-loading{
+    background: url("./i/load1.gif") no-repeat;
+    background-size: .3rem
+  }
 	.ui-icon-set{
 		background-position: -3.1rem -.1rem;
 	}
@@ -421,15 +437,11 @@
     margin-top: .3rem;
     border-bottom: 1px dashed #d6d6d6;
     .ui-txt-p{
-      width: 80%;
+      width: 82%;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
       display: inline-block;
-    }
-    .ui-color-red{
-      float: right;
-      font-size: .28rem;
     }
   }
 }

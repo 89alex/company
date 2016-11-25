@@ -46,7 +46,7 @@ Dialog.prototype.htmls = function (confs) {
         '<div class="ui-dialog">'+
         '<div class="ui-dialog-title ui-dialog-con animated fadeInUp">'+
         '<header>'+
-        '<i class="ui-up-icon ui-icon-warn"></i>'+confs.title+''+
+        '<i class="ui-up-icon ui-icon-warn-im"></i>'+confs.title+''+
         '</header>'+
         '<p class="ui-txt-tip">'+confs.con+'</p>'+
         '<section class="ui-btn-con">'+
