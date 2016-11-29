@@ -25,14 +25,14 @@ class EntryInput extends React.Component {
                 <div className="ui-in-content">
                     数量
                     <label htmlFor="">
-                        <input ref="num" defaultValue="" onChange={this.handleChange} className="ui-txt-in" type="number"/>件
+                        <input ref="num" id="text-stockNum" defaultValue="" onChange={this.handleChange} className="ui-txt-in" type="number"/>件
                     </label>
                     <span className="ui-in-tip">每组颜色尺寸的数量</span>
                 </div>
                 <div className="ui-in-content">
                     价格
                     <label htmlFor="">
-                        <input ref="sale" defaultValue="" onChange={this.handleChange} className="ui-txt-in" type="number"/>元
+                        <input ref="sale" id="text-goodsPrice" defaultValue="" onChange={this.handleChange} className="ui-txt-in" type="number"/>元
                     </label>
                     <span className="ui-in-tip">每组颜色尺寸的价格</span>
                 </div>

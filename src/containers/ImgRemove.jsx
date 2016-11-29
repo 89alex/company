@@ -89,7 +89,7 @@ class ImgRemove extends React.Component {
                 <section className="ui-select-title ui-select-theOne">
                     <span>图片目录</span>
                     <label htmlFor="" className="ui-select-com">
-                        <select onChange={this.handleChange}>
+                        <select id="Select-imgCatalog" onChange={this.handleChange}>
                             {
                                 lists.map((list, index) => {
                                    return <option key={index} value={list.title}>{list.title}</option>
@@ -106,7 +106,7 @@ class ImgRemove extends React.Component {
                         <button className="ui-color-red " onClick={this.handleRetry}>一键重试</button>
                         <p className="ui-tip-red ui-tip-warn"><i className="ui-up-icon ui-icon-warn"></i>部分图片失败</p>
                     </header>
-                    <ul className="ui-link-list">
+                    <ul id="List-imgRemove" className="ui-link-list">
                         {
                             lists[catalog].links.map((links, index) => {
                                 return (

@@ -22,11 +22,11 @@ class EntryArea extends React.Component {
         //console.log(area.parentNode.parentNode.querySelector('header .ui-tip-warn'))
     }
     render(){
-        const {text} = this.props.title
+        const {text, id} = this.props.title
         const {word} = this.state
         return (
             <section className="ui-txt-area">
-                <textarea onChange={this.handleChange} maxLength="64" placeholder={`请输入${text}`} />
+                <textarea id={id} onChange={this.handleChange} maxLength="64" placeholder={`请输入${text}`} />
                 <span className="ui-font-tip">{word}/64</span>
             </section>
         )
@@ -34,7 +34,8 @@ class EntryArea extends React.Component {
 }
 
 EntryArea.PropTypes = {
-    placeholder: React.PropTypes.string
+    placeholder: React.PropTypes.string,
+    id: React.PropTypes.string
 }
 
 export default EntryArea

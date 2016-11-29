@@ -28,20 +28,20 @@ class ShelveTime extends React.Component {
         //const {showTip} = this.props
         const {times, goShop, house} = this.state
         return (
-            <div>
-                <div className={`ui-in-content ${goShop.selected ? 'ui-col-gray' : ''}`}>
+            <div className="ui-ShelveTime">
+                <div className={`ui-in-content ${goShop.selected ? 'ui-col-gray' : 'ui-radio-checked'}`}>
                     <label htmlFor="goShop">
                         <input className="ui-input-radio" onChange={this.handleChange} defaultChecked id="goShop" name="shop" type="radio"/>
                         立即上架
                     </label>
                 </div>
-                <div className={`ui-in-content ${house.selected ? 'ui-col-gray' : ''}`}>
+                <div className={`ui-in-content ${house.selected ? 'ui-col-gray' : 'ui-radio-checked'}`}>
                     <label htmlFor="house">
                         <input className="ui-input-radio" onChange={this.handleChange} id="house" name="shop" type="radio"/>
                         放入仓库
                     </label>
                 </div>
-                <div className={`ui-in-content ${times.selected ? 'ui-col-gray' : ''}`}>
+                <div className={`ui-in-content ${times.selected ? 'ui-col-gray' : 'ui-radio-checked'}`}>
                     <label htmlFor="set">
                         <input className="ui-input-radio" onChange={this.handleChange} id="set" name="shop" type="radio"/>
                         设定

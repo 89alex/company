@@ -27,9 +27,9 @@ class ComMenu extends React.Component {
                     return (
                         <li key={index}>
                             <img className="line"  src="./static/styles/i/dropDown/down-line.png" alt=""/>
-                            <label  className="ui-input-label" htmlFor="">
-                                <input className="ui-input-checkbox" type="checkbox"/>
-                                {item.menu}
+                            <label  className="ui-input-label" htmlFor={item.menu.number}>
+                                <input id={item.menu.number} data-number={item.menu.number} className="ui-input-checkbox" type="checkbox"/>
+                                {item.menu.text}
                                 {ergodic(item)}
                             </label>
                         </li>
@@ -52,15 +52,15 @@ class DropMenu extends React.Component {
             {
                 'title': '衣服',
                 'items': [
-                    {'menu': '内衣', 'items': [{'menu': '内衣1'}, {'menu': '内衣2'}]},
-                    {'menu': '内库', 'items': []}
+                    {'menu': {'text': '内衣', 'number': '0111'}, 'items': [{'menu': {text: '内衣', number: '0112'}}, {'menu': {text: '内衣2', number: '0123'}}]},
+                    {'menu': {'text': '内库', 'number': '0114'}}
                 ]
             },
             {
                 'title': '床上用品',
                 'items': [
-                    {'menu': '内衣', 'items': [{'menu': '内衣1'}, {'menu': '内衣2'}]},
-                    {'menu': '内库', 'items': []}
+                    {'menu': {'text': '内衣', 'number': '0115'}, 'items': [{'menu': {text: '内衣', number: '013'}}, {'menu': {text: '内衣2', number: '0146'}}]},
+                    {'menu': {'text': '内库', 'number': '0117'}}
                 ]
             }
         ]

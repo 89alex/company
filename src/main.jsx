@@ -33,6 +33,8 @@ import Logistics from './containers/Logistics'
 import ShelveTime from './containers/ShelveTime'
 import ImgRemove from './containers/ImgRemove'
 
+// const logo = require('./static/styles/i/logo.jpg')
+
 //数据模拟
 const title = {
     title7: {
@@ -46,12 +48,14 @@ const title = {
     title1: {
         text: '宝贝标题',
         tip: '标题不能为空',
-        order: 1
+        order: 1,
+        id: 'Area-babyTitle'
     },
     title2: {
         text: '商家编码',
         tip: '编码不能为空',
-        order: 2
+        order: 2,
+        id: 'Area-businessNum'
     },
     title3: {
         text: '库存设置',
@@ -86,6 +90,7 @@ class App extends React.Component {
         this.state = {
             images: null,
             attr: null,
+            user: null,
             showTip: {
                 title1: false,
                 title2: false,
@@ -111,17 +116,35 @@ class App extends React.Component {
             }
         })
     }
+    handleComfirm = () => { //一键上传
+        let babyTitle = document.querySelector('#Area-babyTitle').value, //宝贝标题
+            businessNum = document.querySelector('#Area-businessNum').value, //商家编码
+            stockNum = document.querySelector('#text-stockNum').value, //库存数量
+            goodsPrice = document.querySelector('#text-goodsPrice').value, //商品价格
+            dropMenu = document.querySelectorAll('.ui-drop-menu-con input:checked[type=checkbox]'), //checkbox
+            logisticsTemp = document.querySelector('#Select-LogisticsTemp').value, //运费模板
+            logisticsValue = document.querySelector('.ui-Logistics .ui-radio-checked input[type=number]').value, //模板设置值
+            addressProv = document.querySelector('#to_cn'),// 省份地址
+            addressCity = document.querySelector('#city'),// 城市地址
+            shelveTime = document.querySelector('.ui-ShelveTime .ui-radio-checked label input').getAttribute('id'), //上架时间
+            imgCatalog = document.querySelector('#Select-imgCatalog').value //图片目录
+
+        let shelveTimevalue = shelveTime == 'house' ? '放入仓库' : shelveTime == 'goShop' ? '立即上架' : document.querySelector('.ui-ShelveTime .ui-radio-checked select').value
+        //console.log(babyTitle,businessNum,stockNum,goodsPrice,dropMenu)
+        console.log(shelveTimevalue)
+    }
     getData = async () => {
         const image = await this.fetchs({'url': './static/datas/data.json'})
         const attrs = await this.fetchs({'url': './static/datas/data.json'})
-        this.setState({images : image.images, attr: attrs.attr})
-        //console.log(data)
+        const users = await this.fetchs({'url': './static/datas/data.json'})
+        this.setState({images : image.images, attr: attrs.attr, user: users.user}) 
+        //console.log(images)
     }
     fetchs(init) {
         return new Promise(resolve => {
             fetch(init.url)
-                .then((res) => { console.log(res.status); return res.json() })
-                .then((data) => { resolve(data)})
+                .then((res) => { if(res.ok) return res.json() ;})
+                .then((res) => { resolve(res)})
                 .catch((e) => { console.log(e.message) })
         })
     }
@@ -129,11 +152,11 @@ class App extends React.Component {
         this.getData()
     }
     componentDidMount() {
-
+        
     }
     render() {
         //console.log(data.images)
-        const {images, attr, showTip} = this.state
+        const {images, attr, showTip, user} = this.state
         return (
             <div className="ui-warp">
                 {/*<form action="">*/}
@@ -150,8 +173,17 @@ class App extends React.Component {
                                 <img width="100%" src="static/styles/i/logo.jpg" alt=""/>
                             </section>
                             <section className="ui-right">
-                                <span className="ui-username">SB940</span>
-                                <button onClick={this.handleClick.bind(this)} className="ui-bg-red ui-btn-out">退出</button>
+                                <span className="ui-username">{user && user.username}</span>
+                                {
+                                    user ? 
+                                        <button onClick={this.handleClick.bind(this)} className="ui-bg-red ui-btn-out">退出</button> : 
+                                        (
+                                            <span>
+                                                <button  className="ui-bg-red ui-btn-out">请登陆</button>
+                                                <button  className="ui-bg-red ui-btn-out">注册</button>
+                                            </span>
+                                        )
+                                }
                             </section>
                         </div>
                         <div className="ui-upload-tip">
@@ -244,7 +276,7 @@ class App extends React.Component {
                             <p> 2. 上传速度由图片数量、质量所决定,请耐心等候!</p>
                         </section>
                         <div className="ui-btn-component">
-                            <button>一键上传</button>
+                            <button onClick={this.handleComfirm}>一键上传</button>
                         </div>
                     </div>
                 {/*</form>*/}
