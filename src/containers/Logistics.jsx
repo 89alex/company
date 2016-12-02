@@ -13,12 +13,22 @@ class Logistics extends React.Component {
             }
         }
     }
+    handleChangeTip = (event) => {
+        const {showTipChange, order} = this.props
+        const values = document.querySelector('.ui-Logistics .ui-radio-checked input[type=number]').value,
+            addressProv = document.querySelector('#to_cn').value;
+        values.trim() == ""  || addressProv.trim() == "0" ?
+            showTipChange(order, true) :
+            showTipChange(order, false)
+        //console.log(nums, sales)
+    }
     handleChange = (event) => {
         const e = event.target
         const id = e.id
         id == 'weight' ?
             ( this.setState({weight: {selected: false},volume: {selected: true}})):
             ( this.setState({weight: {selected: true},volume: {selected: false}}))
+        setTimeout(this.handleChangeTip,100)
     }
     render(){
         //const {showTip} = this.props
@@ -45,7 +55,7 @@ class Logistics extends React.Component {
                         按重量
                     </label>
                     <label htmlFor="">
-                        <input id="text-goodsWeight" className="ui-txt-in" type="number"/>（千克/kg）
+                        <input onChange={this.handleChangeTip} id="text-goodsWeight" className="ui-txt-in" type="number"/>（千克/kg）
                     </label>
                 </div>
                 <div className={`ui-in-content ${volume.selected ? 'ui-col-gray' : 'ui-radio-checked'}`}>
@@ -54,12 +64,12 @@ class Logistics extends React.Component {
                         按体积
                     </label>
                     <label htmlFor="">
-                        <input id="text-goodsVolume" className="ui-txt-in" type="number"/>（立方米/m3）
+                        <input onChange={this.handleChangeTip} id="text-goodsVolume" className="ui-txt-in" type="number"/>（立方米/m3）
                     </label>
                 </div>
                 <section id="babyAddress" className="ui-select-title">
                     <span>宝贝地址</span>
-                    <AreaCity/>
+                    <AreaCity handleChange={this.handleChangeTip} />
                 </section>
             </div>
         )

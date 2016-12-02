@@ -34,7 +34,7 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js|jsx$/,
+        test: /\.js|jsx?$/,
         loaders: ['babel?sourceMap'],
         include: path.join(__dirname, 'src')
       },

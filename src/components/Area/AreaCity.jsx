@@ -7,6 +7,7 @@ class AreaCity extends React.Component {
         super(props)
     }
     set_city = (event) => {
+        const {handleChange} = this.props
         var pv, cv, province, city;
         var i, ii;
         city = ReactDom.findDOMNode(this.refs.city)
@@ -23,13 +24,13 @@ class AreaCity extends React.Component {
             city.options[ii].text = cities[pv][i];
             city.options[ii].value = cities[pv][i];
         }
+        handleChange()
     }
     render(){
-        //const {showTip} = this.props
         return (
             <div style={{"display": "inline-block"}}>
                 <label htmlFor="" className="ui-select-com">
-                    <select  name="sheng" id="to_cn" onChange={this.set_city} className="login_text_input">
+                    <select name="sheng" id="to_cn" onChange={this.set_city} className="login_text_input">
                         <option value="0">请选择</option>
 
                         <option value="台湾">台湾</option>

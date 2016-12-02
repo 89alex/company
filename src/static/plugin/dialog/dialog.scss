@@ -11,6 +11,12 @@
   right: 0;
   background: rgba(1,1,1,0.6);
   display: block;
+  .ui-up-icon{
+    vertical-align: text-top
+  }
+  .ui-color-red{
+    color: #ff4400;
+  }
   .ui-dialog-con{
     width: 76%;
     height: auto;
@@ -41,6 +47,25 @@
     }
     .ui-txt-tip{
       font-size: .26rem;
+    }
+  }
+  .ui-dialog-tipTitle{
+    padding: .2rem 0;
+    border-radius: .14rem;
+    .ui-dialog-title{
+      padding-left: .3rem
+    }
+    .ui-tipTitle-con{
+      padding: .2rem .3rem;
+      border: 1px solid #e5e5e5;
+      p{
+        line-height: .5rem;
+        color: #898989;
+      }
+    }
+    .ui-btn-con{
+      padding-top: .2rem;
+      text-align: center
     }
   }
   .ui-dialog-title{

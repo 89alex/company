@@ -13,7 +13,7 @@ class EntryInput extends React.Component {
         const e = event.target
         const nums = ReactDom.findDOMNode(this.refs.num),
             sales = ReactDom.findDOMNode(this.refs.sale);
-        nums.value.trim().length == ""  || sales.value.trim().length == "" ?
+        nums.value.trim() == ""  || sales.value.trim() == "" ?
             showTipChange(order, true) :
             showTipChange(order, false)
         //console.log(nums, sales)

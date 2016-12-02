@@ -16,7 +16,7 @@ class EntryArea extends React.Component {
         const {showTipChange, title} = this.props
         const e = event.target
         this.setState({word: e.value.length})
-        e.value.trim().length == "" ?
+        e.value.trim() == "" ?
             showTipChange(title.order, true) :
             showTipChange(title.order, false)
         //console.log(area.parentNode.parentNode.querySelector('header .ui-tip-warn'))

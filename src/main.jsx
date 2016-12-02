@@ -32,6 +32,7 @@ import DropMenu from './components/DropMenu'
 import Logistics from './containers/Logistics'
 import ShelveTime from './containers/ShelveTime'
 import ImgRemove from './containers/ImgRemove'
+import AttrSetting from './containers/AttrSetting'
 
 // const logo = require('./static/styles/i/logo.jpg')
 
@@ -43,6 +44,10 @@ const title = {
     },
     title8: {
         text: '属性预览',
+        tip: ''
+    },
+    title10: {
+        text: '属性设置',
         tip: ''
     },
     title1: {
@@ -99,6 +104,11 @@ class App extends React.Component {
             }
         }
     }
+    handleHideTip = (event) => {
+        let e = event.target
+        e.parentNode.parentNode.setAttribute('class','ui-new-tip animated flipOutY')
+        setTimeout(() => {e.parentNode.parentNode.remove()},700)
+    }
     showTipChange = (num, bool) => {
         const showTips = this.state.showTip
         showTips[`title${num}`] = bool
@@ -109,8 +119,10 @@ class App extends React.Component {
             current: e.key
         })
         DiaLog({
-            type: 'tip',
-            con: '系统默认有缓存，如果当前页面的商品数据与实际不符，请点击按钮进行刷新！',
+            type: 'tipTitle',
+            title: '提示',
+            btnfont:'我知道了',
+            con: '例如：批发价为30元|1.计划按批发价盈利 50元，价格公式会这样计算：30*100%+50=80元|2.计划按批发价的 200% ，价格公式会这样计算：30*200%+0=60元',
             cancelFun: function () {
                 return true
             }
@@ -124,14 +136,18 @@ class App extends React.Component {
             dropMenu = document.querySelectorAll('.ui-drop-menu-con input:checked[type=checkbox]'), //checkbox
             logisticsTemp = document.querySelector('#Select-LogisticsTemp').value, //运费模板
             logisticsValue = document.querySelector('.ui-Logistics .ui-radio-checked input[type=number]').value, //模板设置值
-            addressProv = document.querySelector('#to_cn'),// 省份地址
-            addressCity = document.querySelector('#city'),// 城市地址
+            addressProv = document.querySelector('#to_cn').value,// 省份地址
+            addressCity = document.querySelector('#city').value,// 城市地址
             shelveTime = document.querySelector('.ui-ShelveTime .ui-radio-checked label input').getAttribute('id'), //上架时间
             imgCatalog = document.querySelector('#Select-imgCatalog').value //图片目录
-
+        
+        babyTitle.trim() == '' ? this.showTipChange(1, true) : true
+        businessNum.trim() == '' ? this.showTipChange(2, true) : true
+        stockNum.trim() == '' || goodsPrice.trim() == '' ? this.showTipChange(3, true) : true
+        logisticsValue.trim() == '' || addressProv.trim() == '' ? this.showTipChange(5, true) : true
         let shelveTimevalue = shelveTime == 'house' ? '放入仓库' : shelveTime == 'goShop' ? '立即上架' : document.querySelector('.ui-ShelveTime .ui-radio-checked select').value
         //console.log(babyTitle,businessNum,stockNum,goodsPrice,dropMenu)
-        console.log(shelveTimevalue)
+        console.log(logisticsValue)
     }
     getData = async () => {
         const image = await this.fetchs({'url': './static/datas/data.json'})
@@ -170,7 +186,7 @@ class App extends React.Component {
                         </header>
                         <div className="ui-user-login">
                             <section className="ui-left ui-logo">
-                                <img width="100%" src="static/styles/i/logo.jpg" alt=""/>
+                                <img width="100%" src="static/styles/i/logo.png" alt=""/>
                             </section>
                             <section className="ui-right">
                                 <span className="ui-username">{user && user.username}</span>
@@ -186,12 +202,18 @@ class App extends React.Component {
                                 }
                             </section>
                         </div>
+                        <div className="ui-new-tip">
+                            <i className="ui-up-icon ui-icon-sound"></i>
+                            <a href="javascript:;" onClick={this.handleHideTip} className="ui-icon-close-a"><i className="ui-up-icon ui-icon-close"></i></a>
+                                重要通知：重要通知重要通知重要通知重要通知重要通知通知  。
+                            <a className="ui-link-block" href="">查看详情 <i className="ui-up-icon ui-icon-link-new"></i></a>
+                        </div>
                         <div className="ui-upload-tip">
                             <ul>
                                 <li><span>上传记录：</span><span><i className="ui-up-icon ui-icon-succ"></i>未上传过！</span></li>
-                                <li><span>盗链检测：</span><span><i className="ui-up-icon ui-icon-warn"></i>有盗链，需要图片搬家！</span></li>
+                                <li><span>盗链检测：</span><span><i className="ui-up-icon ui-icon-warn-red"></i>有盗链，需要图片搬家！</span></li>
                                 <li><span>发布模板：</span><span><i className="ui-up-icon ui-icon-set"></i>上款更便捷，<a
-                                    href="#" className="ui-color-red">进入<i className="ui-up-icon ui-icon-link"></i></a></span></li>
+                                    href="#" className="ui-color-red ui-link-block">进入<i className="ui-up-icon ui-icon-link"></i></a></span></li>
                                 <section className="ui-refresh">
                                     <span>什么情况需要刷新宝贝？</span>
                                     <a href="#" className="ui-refresh-btn">
@@ -206,12 +228,15 @@ class App extends React.Component {
                                 <ImgSwiper images={images}></ImgSwiper>
                             </div>
                         </UploadTitle>
-                        <UploadTitle showTip={showTip.title8} title={title.title8}>
+                        {/*<UploadTitle showTip={showTip.title8} title={title.title8}>//属性预览
                             <section className="ui-attr-con">
                                 {
                                     attr ? attr.map((attrs, index) => <p key={index}>{attrs}</p>) : <p>暂时无任何属性</p>
                                 }
                             </section>
+                        </UploadTitle>*/}
+                        <UploadTitle title={title.title10}>
+                            <AttrSetting />
                         </UploadTitle>
                         <UploadTitle showTip={showTip.title1} title={title.title1}>
                             <EntryArea showTipChange={this.showTipChange} title={title.title1}></EntryArea>
@@ -237,8 +262,8 @@ class App extends React.Component {
                                 </label>
                             </div>
                         </UploadTitle>
-                        <UploadTitle title={title.title5}>
-                            <Logistics />
+                        <UploadTitle showTip={showTip.title5} title={title.title5}>
+                            <Logistics showTipChange={this.showTipChange} order={title.title5.order} />
                             <section className="ui-bot-3"></section>
                         </UploadTitle>
                         <UploadTitle title={title.title6}>
@@ -280,13 +305,6 @@ class App extends React.Component {
                         </div>
                     </div>
                 {/*</form>*/}
-                {/*提示消息*/}
-                <div className="ui-new-tip">
-                    <i className="ui-up-icon ui-icon-sound"></i>
-                    <a href="javascript:;" className="ui-icon-close-a"><i className="ui-up-icon ui-icon-close"></i></a>
-                        重要通知：重要通知重要通知重要通知重要通知重要通知通知  。
-                    <a href="">查看详情 <i className="ui-up-icon ui-icon-link-new"></i></a>
-                </div>
                 {/*弹窗*/}
                 {/*上传成功提示*/}
                 <div className="ui-up-result-bg">
