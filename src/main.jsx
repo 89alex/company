@@ -50,16 +50,25 @@ const title = {
         text: '属性设置',
         tip: ''
     },
+    title11: {
+        text: '宝贝卖点',
+        tip: '宝贝卖点不能为空',
+        order: 11,
+        max: 150,
+        id: 'Area-babyBuy'
+    },
     title1: {
         text: '宝贝标题',
-        tip: '标题不能为空',
+        tip: '宝贝标题不能为空',
         order: 1,
+        max: 60,
         id: 'Area-babyTitle'
     },
     title2: {
         text: '商家编码',
-        tip: '编码不能为空',
+        tip: '商家编码不能为空',
         order: 2,
+        max: 64,
         id: 'Area-businessNum'
     },
     title3: {
@@ -130,6 +139,7 @@ class App extends React.Component {
     }
     handleComfirm = () => { //一键上传
         let babyTitle = document.querySelector('#Area-babyTitle').value, //宝贝标题
+            babyBuy = document.querySelector('#Area-babyBuy').value, //宝贝标题
             businessNum = document.querySelector('#Area-businessNum').value, //商家编码
             stockNum = document.querySelector('#text-stockNum').value, //库存数量
             goodsPrice = document.querySelector('#text-goodsPrice').value, //商品价格
@@ -142,6 +152,7 @@ class App extends React.Component {
             imgCatalog = document.querySelector('#Select-imgCatalog').value //图片目录
         
         babyTitle.trim() == '' ? this.showTipChange(1, true) : true
+        babyBuy.trim() == '' ? this.showTipChange(11, true) : true
         businessNum.trim() == '' ? this.showTipChange(2, true) : true
         stockNum.trim() == '' || goodsPrice.trim() == '' ? this.showTipChange(3, true) : true
         logisticsValue.trim() == '' || addressProv.trim() == '' ? this.showTipChange(5, true) : true
@@ -240,6 +251,9 @@ class App extends React.Component {
                         </UploadTitle>
                         <UploadTitle showTip={showTip.title1} title={title.title1}>
                             <EntryArea showTipChange={this.showTipChange} title={title.title1}></EntryArea>
+                        </UploadTitle>
+                        <UploadTitle showTip={showTip.title11} title={title.title11}>
+                            <EntryArea showTipChange={this.showTipChange}  title={title.title11}></EntryArea>
                         </UploadTitle>
                         <UploadTitle showTip={showTip.title2} title={title.title2}>
                             <EntryArea showTipChange={this.showTipChange}  title={title.title2}></EntryArea>

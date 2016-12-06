@@ -112,7 +112,6 @@
         overflow: hidden;
         .ui-setAttr-con{
             width: 100%;
-            height: .9rem;
             line-height: 0;
             box-sizing: border-box;
             font-size: .28rem;
@@ -694,7 +693,7 @@
     left: 0;
     right: 0;
     background: rgba(1, 1, 1, 0.6);
-    display: none;
+    display: block;
     z-index: 100;
     font-size: .28rem;
     .ui-dialog-con{
@@ -705,16 +704,18 @@
         position: absolute;
         border: 1px solid;
         border-radius: .06rem;
-        top: 30%;
+        top: 20%;
         left: 0;
         right: 0;
     }
     header{
-        width: 100%;
+        width: 86%;
         height: .9rem;
         line-height: .9rem;
+        margin: 0 auto;
         margin-top: .2rem;
         text-align: center;
+        border-bottom: 1px solid #c8c7cc;
         .ui-tip-star{
             margin-right:.04rem;
         }
@@ -724,7 +725,7 @@
         height: .6rem;
         line-height: .6rem;
         margin: 0 auto;
-        margin-bottom: -1px;
+        margin-top: -1px;
         display: block;
         text-align: center;
         border: 1px solid #ff4400;
@@ -745,7 +746,7 @@
             height: .8rem;
             line-height: .8rem;
             padding-left: .2rem;
-            border-top: 1px solid #c8c7cc;
+            border-bottom: 1px solid #c8c7cc;
             position: relative;
             font-size: .24rem;
             color: #6c6c6c;
@@ -760,9 +761,6 @@
             .ui-icon-right{
                 display: block;
             }
-        }
-        li:last-of-type{
-            border-bottom:  1px solid #c8c7cc;
         }
     }
     .ui-btn-con{
@@ -789,10 +787,7 @@
         min-height: 2.2rem;
         max-height: 6rem;
         height: auto;
-        padding: .3rem 0  0 .4rem;
-        border: 1px solid #c8c7cc;
-        border-left: 0; 
-        border-right: 0; 
+        padding: .36rem 0  0 .4rem;
         overflow-x: hidden;
         overflow-y: auto;
         a{

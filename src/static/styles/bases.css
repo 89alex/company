@@ -5,7 +5,7 @@ article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,su
 audio,canvas,progress,video{display: inline-block;vertical-align: baseline}
 audio:not([controls]){display: none;height: 0}[hidden],template{display: none}
 svg:not(:root){overflow: hidden}
-a{background: 0 0;text-decoration: none;-webkit-tap-highlight-color: transparent;color: #08c}
+a{background: 0 0;text-decoration: none;-webkit-tap-highlight-color: transparent;color: #08c; cursor: pointer}
 a:active{outline: 0}
 a:active{color: #069}
 abbr[title]{border-bottom: 1px dotted}
