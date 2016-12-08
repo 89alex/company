@@ -6,6 +6,7 @@ module.exports = {
   // or devtool: 'eval' to debug issues with compiled output:
   devtool: 'cheap-module-eval-source-map',
   entry: [
+    'whatwg-fetch',
     // necessary for hot reloading with IE:
     'eventsource-polyfill',
     // listen to code updates emitted by hot middleware:

@@ -33,6 +33,7 @@ import Logistics from './containers/Logistics'
 import ShelveTime from './containers/ShelveTime'
 import ImgRemove from './containers/ImgRemove'
 import AttrSetting from './containers/AttrSetting'
+import SaleAttr from './containers/SaleAttr'
 
 // const logo = require('./static/styles/i/logo.jpg')
 
@@ -72,8 +73,8 @@ const title = {
         id: 'Area-businessNum'
     },
     title3: {
-        text: '库存设置',
-        tip: '数量和价格都不能为空',
+        text: '销售属性',
+        tip: '',
         order: 3
     },
     title4: {
@@ -141,9 +142,10 @@ class App extends React.Component {
         let babyTitle = document.querySelector('#Area-babyTitle').value, //宝贝标题
             babyBuy = document.querySelector('#Area-babyBuy').value, //宝贝标题
             businessNum = document.querySelector('#Area-businessNum').value, //商家编码
-            stockNum = document.querySelector('#text-stockNum').value, //库存数量
-            goodsPrice = document.querySelector('#text-goodsPrice').value, //商品价格
+            // stockNum = document.querySelector('#text-stockNum').value, //库存数量
+            // goodsPrice = document.querySelector('#text-goodsPrice').value, //商品价格
             dropMenu = document.querySelectorAll('.ui-drop-menu-con input:checked[type=checkbox]'), //checkbox
+            dropMenuArray = [],
             logisticsTemp = document.querySelector('#Select-LogisticsTemp').value, //运费模板
             logisticsValue = document.querySelector('.ui-Logistics .ui-radio-checked input[type=number]').value, //模板设置值
             addressProv = document.querySelector('#to_cn').value,// 省份地址
@@ -154,11 +156,12 @@ class App extends React.Component {
         babyTitle.trim() == '' ? this.showTipChange(1, true) : true
         babyBuy.trim() == '' ? this.showTipChange(11, true) : true
         businessNum.trim() == '' ? this.showTipChange(2, true) : true
-        stockNum.trim() == '' || goodsPrice.trim() == '' ? this.showTipChange(3, true) : true
+        // stockNum.trim() == '' || goodsPrice.trim() == '' ? this.showTipChange(3, true) : true
         logisticsValue.trim() == '' || addressProv.trim() == '' ? this.showTipChange(5, true) : true
         let shelveTimevalue = shelveTime == 'house' ? '放入仓库' : shelveTime == 'goShop' ? '立即上架' : document.querySelector('.ui-ShelveTime .ui-radio-checked select').value
         //console.log(babyTitle,businessNum,stockNum,goodsPrice,dropMenu)
-        console.log(logisticsValue)
+        for(let i = 0; i < dropMenu.length; i++) dropMenuArray[i] = dropMenu[i].getAttribute ? dropMenu[i].getAttribute('data-number') : null
+        console.log(dropMenuArray)
     }
     getData = async () => {
         const image = await this.fetchs({'url': './static/datas/data.json'})
@@ -259,8 +262,11 @@ class App extends React.Component {
                             <EntryArea showTipChange={this.showTipChange}  title={title.title2}></EntryArea>
                         </UploadTitle>
                         <p className="ui-tip-bot">站点_档口位置_档口名_P批发价_#货号</p>
-                        <UploadTitle showTip={showTip.title3} title={title.title3}>
+                        {/*<UploadTitle showTip={showTip.title3} title={title.title3}>
                             <EntryInput showTipChange={this.showTipChange} order={title.title3.order} />
+                        </UploadTitle>*/}
+                        <UploadTitle showTip={showTip.title3} title={title.title3}>
+                            <SaleAttr />
                         </UploadTitle>
                         <p className="ui-tip-bot">利润：<span className="ui-tip-red">0.00 </span>元 批发价：<span className="ui-tip-red">29 </span>元</p>
                         <UploadTitle title={title.title4}>
@@ -270,10 +276,6 @@ class App extends React.Component {
                                     <p><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
                                 </section>
                                 <DropMenu></DropMenu>
-                                <label className="ui-input-label" htmlFor="">
-                                    <input className="ui-input-checkbox" type="checkbox"/>
-                                    衬衫
-                                </label>
                             </div>
                         </UploadTitle>
                         <UploadTitle showTip={showTip.title5} title={title.title5}>
@@ -320,6 +322,7 @@ class App extends React.Component {
                     </div>
                 {/*</form>*/}
                 {/*弹窗*/}
+                
                 {/*上传成功提示*/}
                 <div className="ui-up-result-bg">
                     <div className="ui-up-result">

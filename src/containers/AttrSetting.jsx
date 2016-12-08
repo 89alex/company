@@ -73,9 +73,9 @@ class SelectDouble extends React.Component {
         })
         strings =strings.substring(0,strings.length-1)
         return (
-            <div className="ui-setAttr-con">
-                <img className="line" src="./static/styles/i/dropDown/down-line.png" alt="" />
-                <span className="ui-con-left ui-line-one">{items.attr}</span>
+            <div className="ui-setting-con">
+                {this.props.imgIcon ? <img className="line" src="./static/styles/i/dropDown/down-line.png" alt="" /> : ''}
+                <span className="ui-con-left ui-line-one">{this.props.imgIcon ? '' : <i className="ui-tip-star"></i>}{items.attr}</span>
                 <p className="ui-con-right ui-line-one" onClick={items.selectItems.length <= 1 ? false : this.handleShowDouble.bind(this, items)}>
                     {strings}
                     {
@@ -89,7 +89,7 @@ class SelectDouble extends React.Component {
                         items.menuItems.map((menu, index) => {
                             return (
                                 <li key={index}>
-                                <SelectDouble items={menu} />
+                                <SelectDouble imgIcon={true} items={menu} />
                                 </li>   
                             )
                         })
@@ -168,7 +168,7 @@ class SelectOne extends React.Component {
     render(){
           const items = this.state
           return (
-                <div className="ui-setAttr-con">
+                <div className="ui-setting-con">
                     <span className="ui-con-left ui-line-one"><i className="ui-tip-star">*</i>{items.attr}</span>
                     <p className="ui-con-right ui-line-one" onClick={this.handleShowOne.bind(this, items)}>
                     {
@@ -209,7 +209,7 @@ class AttrSetting extends React.Component {
     }
     componentDidMount(){
         const attrHide = ReactDom.findDOMNode(this.refs.attrHide)
-        const con = attrHide.querySelectorAll('.ui-setAttr-con')
+        const con = attrHide.querySelectorAll('.ui-setting-con')
         setTimeout(function(){
             style.slideShow.height = con.length*con[0].offsetHeight
         },100)
@@ -228,19 +228,19 @@ class AttrSetting extends React.Component {
                     })
                 }
                 {/*可选属性 */}
-                <div className="ui-setAttr-con">
+                <div className="ui-setting-con">
                     <span className="ui-con-left ui-line-one"><i className="ui-tip-star"></i>可选属性</span>
                     <p className="ui-con-right ui-line-one" onClick={this.handleTaggle}>
                         {
-                            optionShow ? <i className="ui-up-icon ui-icon-right ui-icon-show"></i> : 
-                                         <i className="ui-up-icon ui-icon-right ui-icon-hide"></i>
+                            optionShow ? <i className="ui-up-icon ui-icon-right ui-icon-hide"></i> : 
+                                         <i className="ui-up-icon ui-icon-right ui-icon-show"></i>
                         }
                     </p>
                 </div>
                 <section className="ui-option-con" ref="attrHide" style={{height: slide.height , transition: slide.transition}}>
                     {
                         Optional.map((option ,index) => {
-                             return <SelectDouble key={index} items={option} />
+                             return <SelectDouble imgIcon={false} key={index} items={option} />
                         })
                     }
                 </section>

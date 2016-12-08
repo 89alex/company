@@ -18,6 +18,13 @@
         overflow: hidden;
         white-space: nowrap;
     }
+    .ui-line-two{
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical; 
+        word-break: break-all;
+        overflow: hidden;
+    }
     .ui-left{
         float: left;
     }
@@ -108,9 +115,36 @@
     a{
         color: #6171c6;
     }
-    .ui-up-setAttr{
+    .ui-SaleAttr{
+
+    }
+    .ui-attr-table{
+        height: 0;
+        margin-top: -1px;
         overflow: hidden;
-        .ui-setAttr-con{
+    }
+    .ui-attr-list{
+        width: 100%;
+        height: auto;
+        tr{
+            color: #898989;
+        }
+        tr:first-of-type{
+            background: #e4e4e4;
+            color: #333;
+        }
+        td{
+            max-height: 1rem;
+            line-height: .5rem;
+            text-align: center;
+            overflow: hidden;
+            border: 1px solid #c8c7cc;
+            p{
+                margin-bottom: .1rem;
+            }
+        }
+    }
+    .ui-setting-con{
             width: 100%;
             line-height: 0;
             box-sizing: border-box;
@@ -126,7 +160,7 @@
                 line-height: .9rem;
                 margin-left: .1rem;
                 display: inline-block;
-                color: #6c6c6c;
+                color: #898989;
             }
             .ui-con-right{
                 width: 3.8rem;
@@ -137,10 +171,15 @@
                 cursor: pointer;
                 border-bottom: 1px solid #c8c7cc;
                 position: relative;
+                .ui-text-input{
+                    width: 110%;
+                    height: 100%;
+                    border: 0;
+                }
                 .ui-icon-right{
                     position: absolute;
                     top: .24rem;
-                    right: -.16rem;
+                    right: -.14rem;
                 }
             }
             .ui-menu-second{
@@ -159,6 +198,8 @@
                 }
             }
         }
+    .ui-up-setAttr{
+        overflow: hidden;
     }
     .ui-link-block{
         display: inline-block;
@@ -181,15 +222,18 @@
           margin-right: .2rem;
           background: none;
           border: 1px solid #FF4400;
+          border-radius: .06rem;
           font-size: .26rem;
+        }
+        p{
+            height: 100%;
+            color: #898989;
+            font-size: .24rem;
+            display: inline-block;
         }
       }
       .ui-up-icon{
           vertical-align: middle;
-      }
-      .ui-icon-warn-im{
-          background-position: -3.54rem 0;
-          background-size: 4rem;
       }
     }
     .ui-se-times{
@@ -209,7 +253,7 @@
       span{
         margin-right: .26rem;
         font-size: .26rem;
-        color: #6c6c6c;
+        color: #898989;
       }
     }
     .ui-refresh-con{
@@ -222,7 +266,7 @@
     }
     .ui-in-content{
         font-size: .3rem;
-        color: #6c6c6c;
+        color: #898989;
         margin-top: .4rem;
         .ui-txt-in{
             width: 1.6rem;
@@ -260,7 +304,7 @@
             position: absolute;
             bottom: .2rem;
             right: 0;
-            color: #b7b7b7;
+            color: #898989;
         }
         .ui-refresh-con{
           margin-bottom: .4rem;
@@ -315,9 +359,6 @@
             background: #ff4400;
             display: inline-block;
         }
-        .ui-up-icon{
-            vertical-align: text-top;
-        }
     }
     .ui-upload-tip{
         width: 100%;
@@ -350,13 +391,13 @@
         line-height: .6rem;
         padding-right: .16rem;
         background: #f8f8f8;
-        color: #b7b7b7;
+        color: #898989;
         display: inline-block;
         border: 1px solid #dfdfdf;
         border-radius: .06rem;
+        font-size: .26rem;
         .ui-up-icon{
-            margin-top: .07rem;
-            vertical-align: top;
+            vertical-align: sub;
         }
     }
     /*icon图*/
@@ -364,10 +405,12 @@
         background-position: -3.76rem -1.89rem;
     }
     .ui-icon-hide{
-        background-position: -2.6rem -1.89rem;
+        width: .46rem;
+        background-position: -2.56rem -1.89rem;
     }
     .ui-icon-show{
-        background-position: -3.16rem -1.89rem;
+        width: .46rem;
+        background-position: -3.12rem -1.89rem;
     }
     .ui-turn-right{
         background-position: -2rem -1.89rem;
@@ -397,7 +440,7 @@
     }
     .ui-icon-refresh{
         margin-right: .1rem;
-        background-position: -3.68rem -.12rem;
+        background-position: -3.68rem -.08rem;
     }
     .ui-icon-gray{
         background-position: -4.33rem -.12rem;
@@ -408,8 +451,8 @@
   padding-bottom: .2rem;
 }
 .ui-drop-menu{
-  font-size: .26rem;
-  color: #6c6c6c;
+  font-size: .28rem;
+  color: #898989;
   margin: .2rem 0;
   .ui-menu-title{
 
@@ -458,11 +501,11 @@
   -webkit-appearance: none;// 系统默认样式
   -o-appearance: none;// 系统默认样式
   -moz-appearance: none;// 系统默认样式
-  width: .3rem;
-  height: .3rem;
+  width: .34rem;
+  height: .34rem;
   margin-right: .1rem;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid #c8c7cc;
   display: inline-block;
   background-clip: content-box;
   user-select: none;
@@ -477,7 +520,7 @@
   color: #f12754;
   font-weight: 700;
   position: absolute;
-  top: -.08rem;
+  top: -.04rem;
   left: 0;
   font-style: oblique;
   font-size: .3rem;
@@ -506,8 +549,8 @@
 }
 /**/
 .ui-input-radio{
-  width: .3rem;
-  height: .3rem;
+  width: .34rem;
+  height: .36rem;
   margin-right: .1rem;
   border: 1px solid #bdbdbd;
   border-radius: 50%;
@@ -525,8 +568,8 @@
   width: .3rem;
   height: .3rem;
   background: url("./i/ui-app-icon.png") no-repeat;
-  background-position: -.43rem -1.36rem;
-  background-size: 5rem;
+  background-position: -.53rem -1.62rem;
+  background-size: 6rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -538,7 +581,7 @@
     margin-top: .3rem;
     border-bottom: 1px dashed #d6d6d6;
     .ui-txt-p{
-      width: 82%;
+      width: 70%;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;

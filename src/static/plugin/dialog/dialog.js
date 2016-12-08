@@ -42,10 +42,13 @@ Dialog.prototype._init = function(conf){
 }
 //html模板
 Dialog.prototype.htmls = function (confs) {
-    let arrays = confs.type == 'tipTitle' && confs.con.split('|'), tipTitleCons = ''
-    arrays.map((array) => {
-        tipTitleCons += '<p>'+array+'</p>'
-    })
+    let tipTitleCons = ''
+    if(confs.type == 'tipTitle'){
+        let arrays = confs.con.split('|')
+        arrays.map((array) => {
+            tipTitleCons += '<p>'+array+'</p>'
+        })
+    }
     const title =
         '<div class="ui-dialog">'+
         '<div class="ui-dialog-title ui-dialog-con animated fadeInUp">'+
@@ -71,21 +74,39 @@ Dialog.prototype.htmls = function (confs) {
         '</div>'
     const tipTitle = 
         '<div class="ui-dialog">'+
-            '<div class="ui-dialog-tipTitle ui-dialog-con animated fadeInUp">'+
-                '<header class="ui-dialog-title ui-color-red"><h3><i class="ui-up-icon ui-icon-warn"></i>'+confs.title+'</h3></header>'+
-                    '<section class="ui-tipTitle-con">'+
-                        ''+tipTitleCons+''+
-                    '</section>'+
-                    '<section class="ui-btn-con"><a href="javascript:;" id="btn-cancel" class="ui-btn-one ui-color-red">'+confs.btnfont+'</a></section>'+
-            '</div>'+
+        '<div class="ui-dialog-tipTitle ui-dialog-con animated fadeInUp">'+
+        '<header class="ui-dialog-title ui-color-red"><h3><i class="ui-up-icon ui-icon-warn"></i>'+confs.title+'</h3></header>'+
+        '<section class="ui-tipTitle-con">'+tipTitleCons+
+        '</section>'+
+        '<section class="ui-btn-con"><a href="javascript:;" id="btn-cancel" class="ui-btn-one ui-color-red">'+confs.btnfont+'</a></section>'+
+        '</div>'+
         '</div>'
-    const html = confs.type == 'title' ? title : confs.type == 'tip' ? tip : confs.type == 'tipTitle' ? tipTitle : false
+    const loading = 
+        '<div class="ui-dialog ui-loading">'+
+        '<div class="ui-dialog-con ui-dialog-loading">'+
+        '<p>'+confs.title+'</p>'+
+        '<div class="loading-gif">'+
+		'<span class="circle active1"></span>'+
+		'<span class="circle active2"></span>'+
+		'<span class="circle active3"></span>'+
+		'<div style="clear: both"></div>'+
+		'</div>'+
+        '</div>'+
+        '</div>'
+    const html = confs.type == 'title' ? title : confs.type == 'tip' ? tip : confs.type == 'tipTitle' ? tipTitle : confs.type == 'loading' ? loading : ''
     return html
 }
 Dialog.prototype.appends = function(html){
     const dialog = document.createElement('div')
     dialog.innerHTML = html
     document.body.appendChild(dialog)
+    document.querySelector('.ui-dialog').addEventListener('touchmove', function(event){
+        event.preventDefault()
+    })
+}
+//移除加载动画
+Dialog.prototype.delete = function(){
+    document.body.querySelector('.ui-loading').parentNode.remove()
 }
 //close移除
 Dialog.prototype.close = function(){

@@ -62,18 +62,26 @@ class DropMenu extends React.Component {
                     {'menu': {'text': '内衣', 'number': '0115'}, 'items': [{'menu': {text: '内衣', number: '013'}}, {'menu': {text: '内衣2', number: '0146'}}]},
                     {'menu': {'text': '内库', 'number': '0117'}}
                 ]
+            },
+            {
+                'items': [
+                    {'menu': {'text': '衬衫', 'number': '0111'}}
+                ]
             }
         ]
         //console.log(menus)
         return (
             <div>
                 {menus.map((menu, index) => {
-                    return (
-                        <section key={index} className="ui-drop-menu">
-                            <header className="ui-menu-title">{menu.title}</header>
-                            <ComMenu margin={false} menus={menu.items}></ComMenu>
-                        </section>
-                    )
+                    return menu.title ? 
+                    <section key={index} className="ui-drop-menu">
+                        <header className="ui-menu-title">{menu.title}</header>
+                        <ComMenu margin={false} menus={menu.items}></ComMenu>
+                    </section> : 
+                    <label key={index} className="ui-input-label" htmlFor={menu.number}>
+                        <input id={menu.number} className="ui-input-checkbox" type="checkbox"/>
+                        衬衫
+                    </label>
                 })}
             </div>
         )

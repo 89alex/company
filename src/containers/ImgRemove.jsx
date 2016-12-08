@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react'
+import DiaLog from '../static/plugin/dialog/dialog'
 
 class ImgRemove extends React.Component {
     constructor(props){
@@ -9,8 +10,8 @@ class ImgRemove extends React.Component {
                     title:'一起做网店（勿删）_商品详1',
                     links: [
                         {link: 'www.baidu.com/1', state: 'fail'},
-                        {link: 'www.baidu.com/2', state: 'not'},
-                        {link: 'www.baidu.com/3', state: 'succ'},
+                        {link: 'www.baidu.com/2', state: 'fail'},
+                        {link: 'www.baidu.com/3', state: 'loading'},
                         {link: 'www.baidu.com/4', state: 'fail'}
                     ]
                 },
@@ -18,9 +19,9 @@ class ImgRemove extends React.Component {
                     title:'一起做网店（勿删）_商品详情2',
                     links: [
                         {link: 'www.baidu.com/1', state: 'fail'},
-                        {link: 'www.baidu.com/2', state: 'not'},
+                        {link: 'www.baidu.com/2', state: 'fail'},
                         {link: 'www.baidu.com3', state: 'loading'},
-                        {link: 'www.baidu.com4/', state: 'not'}
+                        {link: 'www.baidu.com4/', state: 'fail'}
                     ]
                 }
             ],
@@ -41,6 +42,11 @@ class ImgRemove extends React.Component {
              }
          }
          this.setState({lists: newLinks})
+         let loading = new DiaLog({
+            type: 'loading',
+            title: '图片搬家中...'
+        })
+        setTimeout(loading.delete, 2000) //移除
     }
     handleRetry = () => {
         const {catalog, lists} = this.state
@@ -102,17 +108,19 @@ class ImgRemove extends React.Component {
                 <section className="ui-remove-con">
                     <header className="ui-txt-title">
                         <button className="ui-color-red" onClick={this.handleUpload}>一键搬家</button>
-                        <button className="ui-color-red" onClick={this.handleRemove}>一键移除</button>
+                        {/*<button className="ui-color-red" onClick={this.handleRemove}>一键移除</button>
                         <button className="ui-color-red " onClick={this.handleRetry}>一键重试</button>
-                        <p className="ui-tip-red ui-tip-warn"><i className="ui-up-icon ui-icon-warn"></i>部分图片失败</p>
+                        <p className="ui-tip-red"><i className="ui-up-icon ui-icon-warn"></i>部分图片失败</p>
+                        <p className="ui-tip-red"><i className="ui-up-icon ui-icon-succ"></i>完美图片，无需“图片搬家”！</p>*/}
+                        <p className="ui-tip-red"><i className="ui-up-icon ui-icon-warn"></i>有盗链，请点击“一键搬家”！</p>
                     </header>
                     <ul id="List-imgRemove" className="ui-link-list">
                         {
                             lists[catalog].links.map((links, index) => {
                                 return (
                                     <li key={index}>
+                                        <i className={`ui-up-icon ${links.state == 'loading' ? 'ui-icon-loading' : links.state == 'not' || links.state == 'fail' ?'ui-icon-warn' : ''}`}></i>
                                         <p className={`ui-txt-p ${links.state == 'succ' ? 'ui-color-blue' : 'ui-color-red'}`}>{links.link}</p>
-                                        <i className={`ui-up-icon ${links.state == 'loading' ? 'ui-icon-loading' : links.state == 'not' || links.state == 'fail' ?'ui-icon-warn-im' : 'ui-icon-succ'}`}></i>
                                         <a className="ui-color-red ui-right" href="javascript:;" onClick={this.handleClick.bind(this, index)}>移除</a>
                                     </li>
                                 )
