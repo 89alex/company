@@ -9,17 +9,17 @@ class ComMenu extends React.Component {
         }
     }
     render() {
-        const ergodic = (item) => {
-            //console.log(item.items)
-            if(item.items) {
-                return (
-                    <ComMenu margin={true} menus={item.items}>
-                        {ergodic(item.items)}
-                    </ComMenu>
-                )
-            }
-        }
-        const {menus, margin} = this.props
+        // const ergodic = (item) => {
+        //     //console.log(item.items)
+        //     if(item.items) {
+        //         return (
+        //             <ComMenu margin={true} menus={item.items}>
+        //                 {ergodic(item.items)}
+        //             </ComMenu>
+        //         )
+        //     }
+        // }
+        const {menus, margin, handleClick} = this.props
         //console.log(menus)
         return (
             <ul style={margin ? {'marginLeft': '.2rem'} : {}} className="ui-menu-main">
@@ -28,9 +28,12 @@ class ComMenu extends React.Component {
                         <li key={index}>
                             <img className="line"  src="./static/styles/i/dropDown/down-line.png" alt=""/>
                             <label  className="ui-input-label" htmlFor={item.menu.number}>
-                                <input id={item.menu.number} data-number={item.menu.number} className="ui-input-checkbox" type="checkbox"/>
+                                <input onClick={handleClick} id={item.menu.number} data-number={item.menu.number} className="ui-input-checkbox" type="checkbox"/>
                                 {item.menu.text}
-                                {ergodic(item)}
+                                {
+                                    item.items ? 
+                                    <ComMenu handleClick={handleClick} margin={true} menus={item.items} /> : ''
+                                }
                             </label>
                         </li>
                     )
@@ -46,46 +49,36 @@ class DropMenu extends React.Component {
 
         }
     }
+    handleClick = (event) => {
+        let e = event || window.event
+        e.target.getAttribute('checked') ? 
+            e.target.removeAttribute('checked'):
+            e.target.setAttribute('checked','true')
+    }
     render() {
-        //const {placeholder} = this.props
-        const menus = [
-            {
-                'title': '衣服',
-                'items': [
-                    {'menu': {'text': '内衣', 'number': '0111'}, 'items': [{'menu': {text: '内衣', number: '0112'}}, {'menu': {text: '内衣2', number: '0123'}}]},
-                    {'menu': {'text': '内库', 'number': '0114'}}
-                ]
-            },
-            {
-                'title': '床上用品',
-                'items': [
-                    {'menu': {'text': '内衣', 'number': '0115'}, 'items': [{'menu': {text: '内衣', number: '013'}}, {'menu': {text: '内衣2', number: '0146'}}]},
-                    {'menu': {'text': '内库', 'number': '0117'}}
-                ]
-            },
-            {
-                'items': [
-                    {'menu': {'text': '衬衫', 'number': '0111'}}
-                ]
-            }
-        ]
-        //console.log(menus)
+        const {menus} = this.props
         return (
             <div>
                 {menus.map((menu, index) => {
                     return menu.title ? 
                     <section key={index} className="ui-drop-menu">
                         <header className="ui-menu-title">{menu.title}</header>
-                        <ComMenu margin={false} menus={menu.items}></ComMenu>
+                        <ComMenu handleClick={this.handleClick} margin={false} menus={menu.items}></ComMenu>
                     </section> : 
-                    <label key={index} className="ui-input-label" htmlFor={menu.number}>
-                        <input id={menu.number} className="ui-input-checkbox" type="checkbox"/>
-                        衬衫
-                    </label>
+                    <section key={index} className="ui-drop-menu">
+                        <label className="ui-input-label" htmlFor={menu.items.number}>
+                            <input data-number={menu.items.number} onClick={this.handleClick} id={menu.items.number} className="ui-input-checkbox" type="checkbox"/>
+                            {menu.items.text}
+                        </label>
+                    </section>
                 })}
             </div>
         )
     }
+}
+
+DropMenu.PropTypes = {
+    menus: React.PropTypes.string
 }
 
 export default DropMenu

@@ -4,20 +4,23 @@ import ReactDom from 'react-dom'
 const style = {
     slideHide: {
         height: 0,
-        transition: 'all 1s ease'
+        transition: 'all .5s ease'
     },
     slideShow: {
-        transition: 'all 1s ease',
+        transition: 'all .5s ease',
         height: ''
     }
 }
 class ListAttr extends React.Component {
     constructor(props){
         super(props)
-        this.state = this.props.item
+        this.state = this.props
     }
     handleTaggle = () => {
-        this.setState({show: !this.state.show})
+        const {item} = this.state
+        let _item = item
+        _item.show = !item.show
+        this.setState({item:_item})
     }
     componentDidMount(){
         const attrHide = ReactDom.findDOMNode(this.refs.attrHide)
@@ -27,7 +30,7 @@ class ListAttr extends React.Component {
         },100)
     }
     render () {
-        const item = this.state
+        const {item, lists} = this.state
          const slide = item.show ? style.slideShow : style.slideHide
         return (
             <section>
@@ -51,19 +54,21 @@ class ListAttr extends React.Component {
                             <td width="30%">尺寸</td>
                             <td width="20%">价格</td>
                             <td width="20%">库存</td>
+                            <td className="ui-table-hide">编码</td>
                         </tr>
-                        <tr>
-                            <td><p className="ui-line-two">白色</p></td>
-                            <td>S</td>
-                            <td>2000</td>
-                            <td>200</td>
-                        </tr>
-                        <tr>
-                            <td><p className="ui-line-two">自定义自定义自定定定自定义颜额</p></td>
-                            <td>S</td>
-                            <td>2000</td>
-                            <td>200</td>
-                        </tr>
+                        {
+                            lists.map((list, index) => {
+                                return (
+                                    <tr key={index}>
+                                        <td><p className="ui-line-two">{list.color}</p></td>
+                                        <td>{list.size}</td>
+                                        <td>{list.price}</td>
+                                        <td>{list.store}</td>
+                                        <td className="ui-table-hide">{list.number}</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                     </table>
                 </div>
@@ -76,19 +81,35 @@ class SaleAttr extends React.Component {
         super(props)
         this.state = {
             items: [
-                {attr: '統一价格', static: '200', optional: true},
-                {attr: '統一库存', static: '2000', optional: true},
-                {attr: '統一编码', static: '200', optional: false},
+                {attr: '統一价格', static: '200', relate: 'price', optional: true},
+                {attr: '統一库存', static: '2000', relate: 'store', optional: true},
+                {attr: '統一编码', static: '200', relate: 'number', optional: false},
+            ],
+            shows: [
+                {attr: '宝贝规格', static: '6', optional: true, show: false }
             ],
             lists: [
-                {attr: '宝贝规格', static: '6', optional: true, show: false },
-                {attr: '宝贝规格', static: '6', optional: true, show: false }
+                {color: '白色', size: 'S', price: 2000, store: 200, number: 200},
+                {color: '白色, 白色, 白色, 白色, 白色, 白色', size: 'S', price: 2000, store: 200, number: 200},
+                {color: '白色', size: 'S', price: 2000, store: 200, number: 200},
+                {color: '白色', size: 'S', price: 2000, store: 200, number: 200},
+                {color: '白色', size: 'S', price: 2000, store: 200, number: 200}
             ]
         }
     }
+    handleChange = (arg, event) => {
+        var e = event || window.event,
+            value = e.target.value,
+            {lists} = this.state,
+            _lists = lists
+        _lists.map((list, index) => {
+            list[arg] = value
+        })
+        this.setState({lists: _lists})
+    }
     render(){
         //const {showTip} = this.props
-        const {items, lists} = this.state
+        const {items, shows, lists} = this.state
         return (
             <div className="ui-SaleAttr ui-bot-3">
                 {
@@ -99,16 +120,16 @@ class SaleAttr extends React.Component {
                                 {item.attr}
                                 </span>
                                 <p className="ui-con-right ui-line-one">
-                                <input className="ui-text-input" defaultValue={item.static} type="text"/>
+                                <input onChange={this.handleChange.bind(this, item.relate)} className="ui-text-input" defaultValue={item.static} type="text"/>
                                 </p>
                             </div>
                         )
                     })
                 }
                 {
-                    lists.map((list, index) => {
+                    shows.map((show, index) => {
                         return (
-                            <ListAttr key={index} item={list} />
+                            <ListAttr key={index} lists={lists} item={show} />
                         )
                     })
                 }

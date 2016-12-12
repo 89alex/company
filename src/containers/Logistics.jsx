@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react'
 import AreaCity from '../components/Area/AreaCity.jsx'
 
+
+
 class Logistics extends React.Component {
     constructor(props){
         super(props)
@@ -30,13 +32,23 @@ class Logistics extends React.Component {
             ( this.setState({weight: {selected: true},volume: {selected: false}}))
         setTimeout(this.handleChangeTip,100)
     }
+    handleReload = () => {
+        const {showTipChange, order} = this.props
+        this.setState({weight: {selected: false},volume: {selected: true}})
+        showTipChange(order, false)
+        document.querySelector('.ui-Logistics #weight').checked = true
+        var txts = document.querySelectorAll('.ui-Logistics .ui-txt-in'),
+            selects = document.querySelectorAll('.ui-Logistics .login_text_input')
+        for(let i in txts) txts[i].value ? txts[i].value = '' : false
+        for(let i in selects) selects[i].value ? selects[i].value = 0 : false
+    }
     render(){
         //const {showTip} = this.props
         const {weight, volume} = this.state
         return (
             <div className="ui-Logistics">
                 <section className="ui-refresh-con">
-                    <a href="#" className="ui-refresh-btn"><i className="ui-up-icon ui-icon-refresh"></i>刷新运费模板</a>
+                    <a href="javascript:;" className="ui-refresh-btn" onClick={this.handleReload}><i className="ui-up-icon ui-icon-refresh"></i>刷新运费模板</a>
                     <p><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
                 </section>
                 <section className="ui-select-title">

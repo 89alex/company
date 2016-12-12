@@ -4,10 +4,10 @@ import ReactDom from  'react-dom'
 const style = {
     slideHide: {
         height: 0,
-        transition: 'all 1s ease'
+        transition: 'all .5s ease'
     },
     slideShow: {
-        transition: 'all 1s ease',
+        transition: 'all .5s ease',
         height: ''
     }
 }

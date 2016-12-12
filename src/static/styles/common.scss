@@ -143,6 +143,9 @@
                 margin-bottom: .1rem;
             }
         }
+        .ui-table-hide{
+            display: none;
+        }
     }
     .ui-setting-con{
             width: 100%;
@@ -166,7 +169,7 @@
                 width: 3.8rem;
                 height: .9rem;
                 line-height: .9rem;
-                padding-right: .4rem;
+                padding-right: .44rem;
                 float: right;
                 cursor: pointer;
                 border-bottom: 1px solid #c8c7cc;
@@ -179,7 +182,7 @@
                 .ui-icon-right{
                     position: absolute;
                     top: .24rem;
-                    right: -.14rem;
+                    right: -.12rem;
                 }
             }
             .ui-menu-second{
@@ -406,10 +409,12 @@
     }
     .ui-icon-hide{
         width: .46rem;
+        height: .46rem;
         background-position: -2.56rem -1.89rem;
     }
     .ui-icon-show{
         width: .46rem;
+        height: .46rem;
         background-position: -3.12rem -1.89rem;
     }
     .ui-turn-right{
@@ -454,6 +459,10 @@
   font-size: .28rem;
   color: #898989;
   margin: .2rem 0;
+  &>.ui-menu-main{
+      max-height: 4.4rem;
+      overflow-y: auto;
+  }
   .ui-menu-title{
 
   }
@@ -513,7 +522,7 @@
   position: relative;
   vertical-align: sub;
 }
-.ui-input-checkbox:checked::before{
+ .ui-checkbox-checked:checked::before,.ui-input-checkbox[checked=true]::before{
   content: '√';
   width: 15px;
   height: auto;
@@ -525,6 +534,7 @@
   font-style: oblique;
   font-size: .3rem;
 }
+
 /*ui-select-com*/
 .ui-select-com{
   position: relative;
@@ -599,21 +609,19 @@
   width: 100%;
   min-width: 320px;
   max-width: 720px;
-  height: 1.2rem;
-  line-height: 1.2rem;
   background: #fff;
   text-align: center;
   box-shadow: 0px -4px 6px -4px #adadad;
   position: fixed;
-  bottom: 0;
+  bottom: 0rem;
   button{
-    width: 70%;
-    height: .6rem;
-    line-height: .6rem;
+    width: 40%;
+    height: .7rem;
+    line-height: .7rem;
     background: #ff5e0e;
     color: #fff;
     border: 0;
-    border-radius: .06rem;
+    border-radius: .02rem;
   }
 }
 /*ui-new-tip*/

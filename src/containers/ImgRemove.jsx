@@ -89,7 +89,7 @@ class ImgRemove extends React.Component {
         return (
             <section className="ui-bot-3">
                 <section className="ui-refresh-con">
-                    <a href="#" className="ui-refresh-btn"><i className="ui-up-icon ui-icon-refresh"></i>刷新图片目录</a>
+                    <a href="javascript:;" className="ui-refresh-btn"><i className="ui-up-icon ui-icon-refresh"></i>刷新图片目录</a>
                     <p><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
                 </section>
                 <section className="ui-select-title ui-select-theOne">

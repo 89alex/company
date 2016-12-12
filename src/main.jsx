@@ -38,6 +38,25 @@ import SaleAttr from './containers/SaleAttr'
 // const logo = require('./static/styles/i/logo.jpg')
 
 //数据模拟
+const menus = [
+            {
+                'title': '衣服',
+                'items': [
+                    {'menu': {'text': '内衣', 'number': '0111'}, 'items': [{'menu': {text: '内衣', number: '0112'}}, {'menu': {text: '内衣2', number: '0123'}}]},
+                    {'menu': {'text': '内库', 'number': '0114'}}
+                ]
+            },
+            {
+                'title': '床上用品',
+                'items': [
+                    {'menu': {'text': '内衣', 'number': '0115'}, 'items': [{'menu': {text: '内衣', number: '013'}}, {'menu': {text: '内衣2', number: '0146'}}]},
+                    {'menu': {'text': '内库', 'number': '0117'}}
+                ]
+            },
+            {
+                'items': {'text': '衬衫', 'number': '011111'}
+            }
+        ]
 const title = {
     title7: {
         text: '主图预览',
@@ -144,7 +163,7 @@ class App extends React.Component {
             businessNum = document.querySelector('#Area-businessNum').value, //商家编码
             // stockNum = document.querySelector('#text-stockNum').value, //库存数量
             // goodsPrice = document.querySelector('#text-goodsPrice').value, //商品价格
-            dropMenu = document.querySelectorAll('.ui-drop-menu-con input:checked[type=checkbox]'), //checkbox
+            dropMenu = document.querySelectorAll('.ui-drop-menu-con input[type=checkbox][checked=true]'), //checkbox
             dropMenuArray = [],
             logisticsTemp = document.querySelector('#Select-LogisticsTemp').value, //运费模板
             logisticsValue = document.querySelector('.ui-Logistics .ui-radio-checked input[type=number]').value, //模板设置值
@@ -162,6 +181,13 @@ class App extends React.Component {
         //console.log(babyTitle,businessNum,stockNum,goodsPrice,dropMenu)
         for(let i = 0; i < dropMenu.length; i++) dropMenuArray[i] = dropMenu[i].getAttribute ? dropMenu[i].getAttribute('data-number') : null
         console.log(dropMenuArray)
+    }
+    handleRefreshMenu = (event) => {
+        var e = event.target
+        var menu = e.parentNode.parentNode,
+            checkbox = menu.querySelectorAll('.ui-drop-menu-con input[type=checkbox]')
+        for(let i in checkbox) checkbox[i].removeAttribute && checkbox[i].removeAttribute('checked')
+
     }
     getData = async () => {
         const image = await this.fetchs({'url': './static/datas/data.json'})
@@ -186,7 +212,7 @@ class App extends React.Component {
     }
     render() {
         //console.log(data.images)
-        const {images, attr, showTip, user} = this.state
+        const {images, attr, showTip, user, show} = this.state
         return (
             <div className="ui-warp">
                 {/*<form action="">*/}
@@ -230,7 +256,7 @@ class App extends React.Component {
                                     href="#" className="ui-color-red ui-link-block">进入<i className="ui-up-icon ui-icon-link"></i></a></span></li>
                                 <section className="ui-refresh">
                                     <span>什么情况需要刷新宝贝？</span>
-                                    <a href="#" className="ui-refresh-btn">
+                                    <a href="javascript:;" className="ui-refresh-btn">
                                         <i className="ui-up-icon ui-icon-refresh"></i>
                                         刷新宝贝
                                     </a>
@@ -272,10 +298,10 @@ class App extends React.Component {
                         <UploadTitle title={title.title4}>
                             <div className="ui-drop-menu-con">
                                 <section className="ui-refresh-con">
-                                    <a href="#" className="ui-refresh-btn"><i className="ui-up-icon ui-icon-refresh"></i>刷新宝贝分类</a>
+                                    <a href="javascript:;" className="ui-refresh-btn" onClick={this.handleRefreshMenu}><i className="ui-up-icon ui-icon-refresh"></i>刷新宝贝分类</a>
                                     <p><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
                                 </section>
-                                <DropMenu></DropMenu>
+                                <DropMenu menus={menus}></DropMenu>
                             </div>
                         </UploadTitle>
                         <UploadTitle showTip={showTip.title5} title={title.title5}>
@@ -296,15 +322,15 @@ class App extends React.Component {
                             <div className="ui-drop-menu-con">
                                 <ul className="ui-other-check">
                                     <li>
-                                        <label className="ui-input-label" htmlFor="">
-                                            <input className="ui-input-checkbox" defaultChecked type="checkbox"/>
+                                        <label className="ui-input-label" htmlFor="111">
+                                            <input id="111" data-num="111" className="ui-input-checkbox ui-checkbox-checked" defaultChecked="true" type="checkbox"/>
                                             去除货号
                                         </label>
                                         <p className="ui-right ui-col-gray">自动去除 属性、标题 中的货号</p>
                                     </li>
                                     <li>
-                                        <label className="ui-input-label" htmlFor="">
-                                            <input className="ui-input-checkbox" type="checkbox"/>
+                                        <label className="ui-input-label" htmlFor="112">
+                                            <input id="112" data-num="112" className="ui-input-checkbox ui-checkbox-checked" type="checkbox"/>
                                             橱柜推荐
                                         </label>
                                     </li>
