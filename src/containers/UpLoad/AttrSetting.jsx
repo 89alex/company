@@ -74,7 +74,7 @@ class SelectDouble extends React.Component {
         strings =strings.substring(0,strings.length-1)
         return (
             <div className="ui-setting-con">
-                {this.props.imgIcon ? <img className="line" src="./static/styles/i/dropDown/down-line.png" alt="" /> : ''}
+                {this.props.imgIcon ? <i className="line" ></i> : ''}
                 <span className="ui-con-left ui-line-one">{this.props.imgIcon ? '' : <i className="ui-tip-star"></i>}{items.attr}</span>
                 <p className="ui-con-right ui-line-one" onClick={items.selectItems.length <= 1 ? false : this.handleShowDouble.bind(this, items)}>
                     {strings}

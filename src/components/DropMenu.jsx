@@ -22,19 +22,21 @@ class ComMenu extends React.Component {
         const {menus, margin, handleClick} = this.props
         //console.log(menus)
         return (
-            <ul style={margin ? {'marginLeft': '.2rem'} : {}} className="ui-menu-main">
+            <ul style={margin ? {'marginLeft': '.18rem'} : {}} className="ui-menu-main">
                 {menus.map((item, index) => {
                     return (
                         <li key={index}>
-                            <img className="line"  src="./static/styles/i/dropDown/down-line.png" alt=""/>
-                            <label  className="ui-input-label" htmlFor={item.menu.number}>
-                                <input onClick={handleClick} id={item.menu.number} data-number={item.menu.number} className="ui-input-checkbox" type="checkbox"/>
-                                {item.menu.text}
-                                {
-                                    item.items ? 
-                                    <ComMenu handleClick={handleClick} margin={true} menus={item.items} /> : ''
-                                }
-                            </label>
+                            <div className="ui-setting-con">
+                                <i className="line"></i>
+                                <label  className="ui-input-label" htmlFor={item.menu.number}>
+                                    <input onClick={handleClick} id={item.menu.number} data-number={item.menu.number} className="ui-input-checkbox" type="checkbox"/>
+                                    {item.menu.text}
+                                    {
+                                        item.items ? 
+                                        <ComMenu handleClick={handleClick} margin={true} menus={item.items} /> : ''
+                                    }
+                                </label>
+                            </div>
                         </li>
                     )
                 })}

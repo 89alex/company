@@ -24,7 +24,7 @@ class AreaCity extends React.Component {
             city.options[ii].text = cities[pv][i];
             city.options[ii].value = cities[pv][i];
         }
-        handleChange()
+        handleChange && handleChange()
     }
     render(){
         return (

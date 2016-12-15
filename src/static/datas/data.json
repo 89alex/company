@@ -1,12 +1,12 @@
 {
   "images": [
-    {"src": "./static/images/img1.jpg"},
-    {"src": "./static/images/img1.jpg"},
-    {"src": "./static/images/img1.jpg"},
-    {"src": "./static/images/img1.jpg"},
-    {"src": "./static/images/img1.jpg"},
-    {"src": "./static/images/img1.jpg"},
-    {"src": "./static/images/img1.jpg"}
+    {"src": "../static/images/mobile/img1.jpg"},
+    {"src": "../static/images/mobile/img1.jpg"},
+    {"src": "../static/images/mobile/img1.jpg"},
+    {"src": "../static/images/mobile/img1.jpg"},
+    {"src": "../static/images/mobile/img1.jpg"},
+    {"src": "../static/images/mobile/img1.jpg"},
+    {"src": "../static/images/mobile/img1.jpg"}
   ],
   "attr": [
     "长度：2000",

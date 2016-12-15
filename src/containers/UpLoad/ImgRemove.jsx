@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import DiaLog from '../static/plugin/dialog/dialog'
+import DiaLog from '../../static/plugin/dialog/dialog'
 
 class ImgRemove extends React.Component {
     constructor(props){
@@ -84,13 +84,13 @@ class ImgRemove extends React.Component {
         }, 500)
     }
     render(){
-        //const {text, tip} = this.props.title
+        const {handleUpdateTip} = this.props
         const {lists, catalog} = this.state
         return (
             <section className="ui-bot-3">
                 <section className="ui-refresh-con">
                     <a href="javascript:;" className="ui-refresh-btn"><i className="ui-up-icon ui-icon-refresh"></i>刷新图片目录</a>
-                    <p><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
+                    <p onClick={handleUpdateTip}><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
                 </section>
                 <section className="ui-select-title ui-select-theOne">
                     <span>图片目录</span>
@@ -133,6 +133,6 @@ class ImgRemove extends React.Component {
     }
 }
 ImgRemove.PropTypes = {
-    //title: React.PropTypes.string
+    // handleUpdateClick: React.PropTypes.object
 }
 export default ImgRemove

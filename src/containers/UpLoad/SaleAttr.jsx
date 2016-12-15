@@ -120,7 +120,7 @@ class SaleAttr extends React.Component {
                                 {item.attr}
                                 </span>
                                 <p className="ui-con-right ui-line-one">
-                                <input onChange={this.handleChange.bind(this, item.relate)} className="ui-text-input" defaultValue={item.static} type="text"/>
+                                <input onChange={this.handleChange.bind(this, item.relate)} className="ui-text-input" defaultValue={item.static} type="number"/>
                                 </p>
                             </div>
                         )

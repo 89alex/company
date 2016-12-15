@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react'
-import AreaCity from '../components/Area/AreaCity.jsx'
+import AreaCity from '../../components/Area/AreaCity.jsx'
 
 
 
@@ -16,7 +16,7 @@ class Logistics extends React.Component {
         }
     }
     handleChangeTip = (event) => {
-        const {showTipChange, order} = this.props
+        const {showTipChange, order, handleUpdateTip} = this.props
         const values = document.querySelector('.ui-Logistics .ui-radio-checked input[type=number]').value,
             addressProv = document.querySelector('#to_cn').value;
         values.trim() == ""  || addressProv.trim() == "0" ?
@@ -45,11 +45,12 @@ class Logistics extends React.Component {
     render(){
         //const {showTip} = this.props
         const {weight, volume} = this.state
+        const {handleUpdateTip} = this.props
         return (
             <div className="ui-Logistics">
                 <section className="ui-refresh-con">
                     <a href="javascript:;" className="ui-refresh-btn" onClick={this.handleReload}><i className="ui-up-icon ui-icon-refresh"></i>刷新运费模板</a>
-                    <p><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
+                    <p onClick={handleUpdateTip}><i className="ui-up-icon ui-icon-gray"></i>系统默认24小时更新缓存</p>
                 </section>
                 <section className="ui-select-title">
                     <span>运费模板</span>
@@ -88,6 +89,6 @@ class Logistics extends React.Component {
     }
 }
 Logistics.PropTypes = {
-    //title: React.PropTypes.string
+    //handleUpdateTip: React.PropTypes.object
 }
 export default Logistics
